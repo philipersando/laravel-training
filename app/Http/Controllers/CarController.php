@@ -14,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::where('status','available')->latest()->paginate(6);
+        $cars = Car::where('status','available')->where('user_id', '<>', auth()->id())->latest()->paginate(6);
 
         return view('car.list', compact('cars'));
     }
@@ -41,8 +41,12 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
+        $cars = auth()->user()->cars()->latest()->paginate(6);
+
+        return view('car.owned_list', compact('cars'));
+
 
     }
 

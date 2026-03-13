@@ -8,7 +8,7 @@
                 
                 <div class="p-5 bg-white border rounded-3 shadow-sm mt-3 mb-3">
         
-                    <h3 class="fw-bold mb-4 text-center">Edit Car for Rent</h3>
+                    <h3 class="fw-bold mb-4 text-center">Edit Car Details</h3>
                     
                     @if(session('success'))
                         <div class="alert alert-success" role="alert">
