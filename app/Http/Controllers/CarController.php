@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegistrationRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class CarController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        echo "This is my car";
     }
 
     /**
@@ -23,18 +19,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.registration');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegistrationRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->safe(['last_name', 'first_name','middle_name','email', 'password']);
-        User::create($data);
-
-        return redirect()->route('registration')->with('success',true);
+        //
     }
 
     /**
@@ -61,4 +54,11 @@ class UserController extends Controller
         //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

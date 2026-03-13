@@ -9,16 +9,32 @@
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4 fw-bold">Login</h3>
 
-                        <form action="#" method="POST">
+                        @if(session('login_error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('login_error') }}
+                            </div>
+                        @endif
+
+                        <form action="{{ route('process_login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                @error('email')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                                @error('password')
+                                    <div class="text-danger small">
+                                        {{ $message }}
+                                    </div>
+                                @enderror                            
                             </div>
 
                             <div class="d-grid">

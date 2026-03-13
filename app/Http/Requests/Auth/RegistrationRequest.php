@@ -37,8 +37,8 @@ class RegistrationRequest extends FormRequest
                 'max:100',
             ],
             'middle_name' => [
+                'nullable',
                 'string',
-                'min:1',
                 'max:100',
             ],
             'email' => [
