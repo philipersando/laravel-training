@@ -13,7 +13,9 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('car.list');
+        $cars = Car::latest()->paginate(6);
+
+        return view('car.list', compact('cars'));
     }
 
     /**
