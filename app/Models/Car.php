@@ -17,6 +17,8 @@ class Car extends Model
         'status',        
     ];
 
-
+    public static function statuses() {
+        return ['available', 'rented', 'hidden'];
+    }
 
 }

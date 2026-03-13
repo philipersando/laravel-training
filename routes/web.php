@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/cars/create', [CarController::class, 'create'])->name('create_car');
     Route::post('/cars/create', [CarController::class, 'store'])->name('store_car');
+    Route::get('/cars/owned/{id}', [CarController::class, 'edit'])->name('edit_owned_car');
+    Route::put('/cars/owned/{id}', [CarController::class, 'update'])->name('update_owned_car');
 
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

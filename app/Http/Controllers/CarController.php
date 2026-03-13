@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Car\StoreCarRequest;
+use App\Http\Requests\Car\UpdateCarRequest;
 use App\Models\Car;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::latest()->paginate(6);
+        $cars = Car::where('status','available')->latest()->paginate(6);
 
         return view('car.list', compact('cars'));
     }
@@ -42,7 +43,7 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -50,15 +51,22 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $car = auth()->user()->cars()->findOrFail($id);
+
+        return view('car.edit', compact('car'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCarRequest $request, string $id)
     {
-        //
+        $data = $request->safe(['brand', 'model','year','description', 'location', 'price_per_day', 'status']);
+
+        $car = auth()->user()->cars()->findOrFail($id);
+        $car->update($data);
+
+        return redirect()->route('edit_owned_car', $car->id)->with('success',true);
     }
 
     /**
