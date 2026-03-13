@@ -1,4 +1,4 @@
-<x-layout title="Login">
+<x-layout>
     
     <x-slot:title>Login</x-slot:title>
 

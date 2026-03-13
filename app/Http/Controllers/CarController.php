@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Car\StoreCarRequest;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -19,15 +21,18 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('car.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-        //
+        $data = $request->safe(['brand', 'model','year','description', 'location', 'price_per_day']);
+        auth()->user()->cars()->create($data);
+
+        return redirect()->route('create_car')->with('success',true);
     }
 
     /**
