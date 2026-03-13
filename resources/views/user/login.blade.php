@@ -8,7 +8,7 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-4 fw-bold">Login</h3>
-                        
+
                         <form action="#" method="POST">
                             @csrf
                             <div class="mb-3">
