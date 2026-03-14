@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/cars', [CarController::class, 'index'])->name('car_list');
     Route::get('/cars/details/{id}', [RentController::class, 'create'])->name('car_rent_details');
     Route::post('/cars/details/', [RentController::class, 'store'])->name('process_car_rent');
+    Route::get('/cars/rent/{id}', [RentController::class, 'show'])->name('car_rent_status');
     
     Route::get('/cars/owned', [CarController::class, 'show'])->name('owned_car');
     Route::get('/cars/create', [CarController::class, 'create'])->name('create_car');

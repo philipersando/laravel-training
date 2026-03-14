@@ -21,7 +21,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Rents</a>
+                    <a class="nav-link" href="#">My Own Rent</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">

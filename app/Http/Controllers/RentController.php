@@ -28,7 +28,7 @@ class RentController extends Controller
 
         $car = Car::where('status','available')->where('user_id', '<>', auth()->id())->findOrFail($data['car_id']);
 
-        if (Rental::isCurrentlyRented($car->id)) {
+        if(Rental::isCurrentlyRented($car->id)) {
             return back()->with('error', 'This car is currently unavailable.');
         }
 
@@ -47,13 +47,15 @@ class RentController extends Controller
 
         $save = auth()->user()->rentals()->create($data);
 
-        return "Booking is confirmed";
+        return redirect()->route('car_rent_status', $save->id);
     }
 
 
     public function show(string $id)
     {
+        $rent = auth()->user()->rentals()->with('car')->findOrFail($id);
 
+        return view('rent.status', compact('rent'));
     }
 
 
