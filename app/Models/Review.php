@@ -14,4 +14,22 @@ class Review extends Model
         'comment',
     ];
 
+
+    public function rental()
+    {
+        $this->belongsTo(Rental::class);
+    }
+
+
+    public function car()
+    {
+        $this->belongsTo(Car::class);
+    }
+
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
+
 }

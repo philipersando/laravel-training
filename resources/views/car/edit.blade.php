@@ -74,9 +74,9 @@
                                     <option value="available" {{ old('status', $car->status) == 'available' ? 'selected' : '' }}>
                                         Available
                                     </option>
-                                    <option value="rented" {{ old('status', $car->status) == 'rented' ? 'selected' : '' }}>
+                                    {{-- <option value="rented" {{ old('status', $car->status) == 'rented' ? 'selected' : '' }}>
                                         Rented
-                                    </option>
+                                    </option> --}}
                                     <option value="hidden" {{ old('status', $car->status) == 'hidden' ? 'selected' : '' }}>
                                         Hidden
                                     </option>

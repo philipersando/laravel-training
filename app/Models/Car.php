@@ -21,4 +21,23 @@ class Car extends Model
         return ['available', 'rented', 'hidden'];
     }
 
+
+    public function owner() 
+    {
+        return $this->belongsTo(User::class, 'user_id');
+
+    }
+
+    public function rentals() 
+    {
+        return $this->hasMany(Rental::class);
+
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 }

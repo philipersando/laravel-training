@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+
+    private function getUserOwnedCarbyID($carid)
+    {
+        return auth()->user()->cars()->findOrFail($carid);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -55,7 +61,7 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        $car = auth()->user()->cars()->findOrFail($id);
+        $car = $this->getUserOwnedCarbyID($id);
 
         return view('car.edit', compact('car'));
     }
@@ -67,17 +73,22 @@ class CarController extends Controller
     {
         $data = $request->safe(['brand', 'model','year','description', 'location', 'price_per_day', 'status']);
 
-        $car = auth()->user()->cars()->findOrFail($id);
+        $car = $this->getUserOwnedCarbyID($id);
+
         $car->update($data);
 
-        return redirect()->route('edit_owned_car', $car->id)->with('success',true);
+        return redirect()->route('edit_owned_car', $car->id)
+            ->with('success',true)
+            ->with('error', 'Updating prohibited! The car is currently being rented');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+
+
+    public function carDetails($id)
     {
-        //
+        $cars = Car::where('status','available')->where('user_id', '<>', auth()->id())->latest()->paginate(6);
+
     }
+
 }

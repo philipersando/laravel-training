@@ -49,13 +49,13 @@ class User extends Authenticatable
         ];
     }
 
-    // Cars this user has listed for rent
+    
     public function cars()
     {
         return $this->hasMany(Car::class);
     }
 
-    // Bookings this user has made as a Renter
+    
     public function rentals()
     {
         return $this->hasMany(Rental::class);

@@ -17,7 +17,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('create_car') }}">Create New</a></li>
                         <li><a class="dropdown-item" href="{{ route('owned_car') }}">Owned Cars</a></li>
-                        <li><a class="dropdown-item" href="#">Cars Status</a></li>
+                        <li><a class="dropdown-item" href="#">Rentals</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

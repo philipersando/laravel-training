@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 
-                                <a href="#" class="btn btn-sm btn-success mt-3 w-100 py-2">View Details</a>
+                                <a href="{{ route('car_rent_details', $car->id) }}" class="btn btn-sm btn-success mt-3 w-100 py-2">View Details</a>
                             </div>
                         </div>
                     </div>

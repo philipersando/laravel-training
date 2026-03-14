@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\RentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,8 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('/cars', [CarController::class, 'index'])->name('car_list');
-    Route::get('/cars/details/{id}', [CarController::class, 'show'])->name('car_rent_details');
+    Route::get('/cars/details/{id}', [RentController::class, 'create'])->name('car_rent_details');
+    Route::post('/cars/details/', [RentController::class, 'store'])->name('process_car_rent');
     
     Route::get('/cars/owned', [CarController::class, 'show'])->name('owned_car');
     Route::get('/cars/create', [CarController::class, 'create'])->name('create_car');
