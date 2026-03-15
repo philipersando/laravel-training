@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Rental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RentController extends Controller
 {
@@ -59,19 +60,22 @@ class RentController extends Controller
     }
 
 
-    public function edit(string $id)
+    public function owned_rental()
     {
-        //
+
+        $myRentals = DB::table('cars')
+                ->select(
+                    'cars.id', 'cars.brand', 'cars.model', 'cars.year', 
+                    'rentals.user_id', 'rentals.start_date', 'rentals.end_date', 'rentals.total_price', 'rentals.status', 'rentals.created_at',
+                    'users.last_name', 'users.first_name' 
+                )
+                ->join('rentals', 'cars.id', '=', 'rentals.car_id')
+                ->join('users', 'rentals.user_id', '=', 'users.id')
+                ->where('cars.user_id', auth()->id())
+                ->latest('rentals.created_at')
+                ->get();
+
+        return view('rent.owned_rentals', compact('myRentals'));
     }
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }
